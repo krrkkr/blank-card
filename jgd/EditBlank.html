@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<html>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"> </script>
+  <head>
+    <div class = "Option">
+      <span class="Add"> Add </span>
+      <span class="AddText" style="visibility:hidden"> AddTxt </span>
+      <span class="AddImage" style="visibility:hidden"> AddImg </span> 
+      <span class="ShowDel" style="visibility:hidden"> Del </span><br/>
+    </div>
+    <div class = "Input">
+      <textarea cols="10" row="10" name="add" style="resize:none" id ="text0"> </textarea>
+      <span class="Delete" style="visibility:hidden"> Del </span>
+    </div>
+  </head>
+  <body>
+    <span class="accept"> Accept</span>
+    <textarea readonly="readonly" cols="30" row="5" style="resize:none" id="result"> </textarea>
+  </body>
+
+  <script>
+  $(function(){
+    $('.Delete').live('click',function(e){
+      $(this).parent().remove();
+      $('.Delete').css('visibility','hidden');
+      });
+
+      $('.Add').live('click',function(e){
+        $('.AddText').css('visibility','visible');
+        $('.AddImage').css('visibility','visible');
+        $('.ShowDel').css('visibility','visible');
+      });
+
+      var count=0;
+       $('.AddText').on('click',function(e){
+            $('.Input:last').after($('.Input:first').clone());
+            $('.Input:last textarea').attr('id','text'+((count)+1));
+  
+            $('.AddText').css('visibility','hidden');
+            $('.AddImage').css('visibility','hidden');
+            $('.ShowDel').css('visibility','hidden');
+            count=count+1;
+        });
+
+      $('.ShowDel').live('click',function(e){
+        $('.DeleteImage').css('visibility','visible');
+        $('.AddText').css('visibility','hidden');
+        $('.AddImage').css('visibility','hidden');
+        $('.ShowDel').css('visibility','hidden');
+      });
+
+      $('.AddImage').live('click',function(e){
+
+      });
+
+      $('.accept').live('click',function(e){
+       for(var i=0;i<=count;i++){
+        var str=$('#text'+i).val();
+        alert(str);
+      }
+
+      });
+  });
+  </script>
+
+</html>
